@@ -10,6 +10,7 @@ const getPlayerStats = tool(
     console.log(`Player stats for ${player_name} in the ${season} Season`);
     const headers = { Authorization: process.env.BALLDONTLIE_API_KEY };
 
+    // used google gemini to help me understand how to access the API
     try {
       const searchPlayer = await axios.get(
         `https://api.balldontlie.io/v1/players?search=${encodeURIComponent(player_name)}`,
@@ -54,7 +55,7 @@ const getPlayerStats = tool(
     description: "Gets stats for NBA players for the 2016 season.",
     schema: z.object({
       player_name: z.string().describe("Full name of NBA player"),
-      season: z.number().optional().describe("NBA Season")
+      season: z.number().describe("NBA Season")
     })
   }
 );
